@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Montserrat:wght@400;700;800;900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --font-serif: "Times New Roman", Times, serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+  --indigo: #6366f1;
+  --indigo-dark: #4f46e5;
+}
+body { background-color: #030712; color: #cbd5e1; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+.a4-page { width: 210mm; min-height: 297mm; background: white !important; color: black !important; display: block; margin: 0 auto; overflow: hidden; }
+.sec-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 1.25rem 1.25rem 1rem; }
+.sec-label { font-size: 9px; font-weight: 900; color: #475569; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 10px; font-family: var(--font-display); }
+.di { width: 100%; background: #020617; border: 1px solid #1e293b; color: #e2e8f0; padding: 0.55rem 0.75rem; border-radius: 9px; outline: none; font-size: 12px; font-family: var(--font-sans); transition: border-color 0.15s; display: block; resize: vertical; box-sizing: border-box; }
+.di::placeholder { color: #334155; }
+.di:focus { border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99,102,241,0.12); }
+.abtn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; border: 1px solid #1e293b; background: #0f172a; color: #e2e8f0; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: all 0.15s; font-family: var(--font-display); }
+.abtn:hover:not(:disabled) { border-color: #6366f1; color: #a5b4fc; }
+.abtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.aibtn { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(99,102,241,0.3); background: rgba(99,102,241,0.08); color: #a5b4fc; font-size: 10px; font-weight: 700; cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
+.aibtn:hover:not(:disabled) { background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,0.5); }
+.aibtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.add-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; padding: 6px 12px; border-radius: 8px; border: 1px dashed #1e293b; background: transparent; color: #475569; font-size: 10px; font-weight: 700; cursor: pointer; transition: all 0.15s; text-transform: uppercase; letter-spacing: 0.08em; }
+.add-btn:hover { border-color: #6366f1; color: #a5b4fc; background: rgba(99,102,241,0.06); }
+.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px; border: 1px solid rgba(248,113,113,0.2); background: rgba(248,113,113,0.06); cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
+.icon-btn:hover { background: rgba(248,113,113,0.15); border-color: rgba(248,113,113,0.4); }
+.entry-divider { border: none; border-top: 1px solid #1e293b; margin: 12px 0; }
+.link-row { display: flex; align-items: center; gap: 8px; background: #020617; border: 1px solid #1e293b; border-radius: 9px; padding: 0 10px; height: 36px; transition: border-color 0.15s; }
+.link-row:focus-within { border-color: #6366f1; }
+.link-row input { flex: 1; background: transparent; border: none; outline: none; font-size: 12px; color: #e2e8f0; font-family: var(--font-sans); }
+.link-row input::placeholder { color: #334155; }
+.ai-modal-bg { position: fixed; inset: 0; background: rgba(3,7,18,0.85); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem; }
+.ai-modal { background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; padding: 2rem; width: 100%; max-width: 540px; box-shadow: 0 40px 100px rgba(0,0,0,0.7); }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.font-montserrat { font-family: var(--font-display); }
+.font-inter { font-family: var(--font-sans); }
+@media print {
+  body { background: white !important; }
+  .no-print, header, aside { display: none !important; }
+  main { height: auto !important; }
+  section { overflow: visible !important; }
+  #resume-preview { transform: none !important; box-shadow: none !important; }
+}
