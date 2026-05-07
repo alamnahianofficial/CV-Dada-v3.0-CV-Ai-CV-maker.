@@ -29,7 +29,7 @@ export default function AISuggestions({ resume, jobDescription }: Props) {
       resume.summary,
       ...resume.experience.map((e) => `${e.role} at ${e.org}: ${e.bullets}`),
       ...resume.skills.map((s) => `${s.category}: ${s.skills}`),
-      ...resume.projects.map((p) => `${p.title}: ${p.bullets}`),
+      ...resume.projects.map((p) => `${p.name}: ${p.bullets}`),
     ]
       .filter(Boolean)
       .join("\n");
@@ -56,7 +56,9 @@ ${resumeText.slice(0, 600)}`,
       let parsed: string[] = [];
 
       if (Array.isArray(data.extras) && data.extras.length > 0) {
-        parsed = data.extras.map((e: { value: string }) => e.value).filter(Boolean);
+        parsed = data.extras
+          .map((e: { value: string }) => e.value)
+          .filter(Boolean);
       }
 
       if (!parsed.length && data.summary) {
@@ -74,7 +76,9 @@ ${resumeText.slice(0, 600)}`,
       if (parsed.length) {
         setSuggestions(parsed);
       } else {
-        setError("Could not parse suggestions. Try rephrasing the job description.");
+        setError(
+          "Could not parse suggestions. Try rephrasing the job description.",
+        );
       }
     } catch {
       setError("Request failed. Check your network and try again.");
@@ -90,8 +94,16 @@ ${resumeText.slice(0, 600)}`,
       </div>
 
       {!jobDescription.trim() && (
-        <p style={{ fontSize: 10, color: "#64748b", marginBottom: 10, lineHeight: 1.6 }}>
-          Paste a job description in the field above to get personalised suggestions.
+        <p
+          style={{
+            fontSize: 10,
+            color: "#64748b",
+            marginBottom: 10,
+            lineHeight: 1.6,
+          }}
+        >
+          Paste a job description in the field above to get personalised
+          suggestions.
         </p>
       )}
 
@@ -118,7 +130,9 @@ ${resumeText.slice(0, 600)}`,
       </button>
 
       {error && (
-        <p style={{ fontSize: 10, color: "#f87171", marginBottom: 8 }}>{error}</p>
+        <p style={{ fontSize: 10, color: "#f87171", marginBottom: 8 }}>
+          {error}
+        </p>
       )}
 
       {suggestions.length > 0 && (
@@ -136,8 +150,19 @@ ${resumeText.slice(0, 600)}`,
                 border: "1px solid rgba(99,102,241,0.18)",
               }}
             >
-              <Lightbulb size={12} color="#a5b4fc" style={{ marginTop: 1, flexShrink: 0 }} />
-              <p style={{ fontSize: 11, color: "#cbd5e1", lineHeight: 1.55, margin: 0 }}>
+              <Lightbulb
+                size={12}
+                color="#a5b4fc"
+                style={{ marginTop: 1, flexShrink: 0 }}
+              />
+              <p
+                style={{
+                  fontSize: 11,
+                  color: "#cbd5e1",
+                  lineHeight: 1.55,
+                  margin: 0,
+                }}
+              >
                 {s}
               </p>
             </div>
