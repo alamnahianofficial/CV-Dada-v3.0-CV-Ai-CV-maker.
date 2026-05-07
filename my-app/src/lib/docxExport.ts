@@ -141,12 +141,12 @@ export async function exportDocx(
 
   // ─── PHOTO TABLE HEADER ───────────────────────────────────────────────────
   function makeHeader(
-    nameRuns: TextRun[],
-    contactRuns: TextRun[],
-    linkRuns: TextRun[],
+    nameRuns: InstanceType<(typeof import("docx"))["TextRun"]>[],
+    contactRuns: InstanceType<(typeof import("docx"))["TextRun"]>[],
+    linkRuns: InstanceType<(typeof import("docx"))["TextRun"]>[],
     centered: boolean,
     borderColor: string,
-  ): (Paragraph | Table)[] {
+  ): unknown[] {
     if (photoBuffer) {
       const textParagraphs = [
         new Paragraph({ spacing: { after: 60 }, children: nameRuns }),
@@ -259,7 +259,7 @@ export async function exportDocx(
         children: [R(label.toUpperCase(), { bold: true, size: 22 })],
       });
 
-    const rows: (Paragraph | Table)[] = [
+    const rows: unknown[] = [
       ...makeHeader(
         [R(resume.full_name || "YOUR NAME", { bold: true, size: 40 })],
         [
@@ -351,7 +351,7 @@ export async function exportDocx(
             }),
           );
           if (e.bullets)
-            rows.push(...(bul(e.bullets, "bul-classic") as Paragraph[]));
+            rows.push(...(bul(e.bullets, "bul-classic") as unknown[]));
           rows.push(new Paragraph({ spacing: { after: 100 }, children: [] }));
         });
     }
@@ -379,7 +379,7 @@ export async function exportDocx(
             }),
           );
         if (p.bullets)
-          rows.push(...(bul(p.bullets, "bul-classic") as Paragraph[]));
+          rows.push(...(bul(p.bullets, "bul-classic") as unknown[]));
         rows.push(new Paragraph({ spacing: { after: 80 }, children: [] }));
       });
     }
@@ -402,7 +402,7 @@ export async function exportDocx(
             }),
           );
         if (p.bullets)
-          rows.push(...(bul(p.bullets, "bul-classic") as Paragraph[]));
+          rows.push(...(bul(p.bullets, "bul-classic") as unknown[]));
         rows.push(new Paragraph({ spacing: { after: 80 }, children: [] }));
       });
     }
@@ -529,7 +529,7 @@ export async function exportDocx(
         ],
       });
 
-    const rows: (Paragraph | Table)[] = [
+    const rows: unknown[] = [
       ...makeHeader(
         [
           R(resume.full_name || "YOUR NAME", {
@@ -588,7 +588,7 @@ export async function exportDocx(
           );
           if (e.bullets)
             rows.push(
-              ...(bul(e.bullets, "bul-minimal", "475569") as Paragraph[]),
+              ...(bul(e.bullets, "bul-minimal", "475569") as unknown[]),
             );
           rows.push(new Paragraph({ spacing: { after: 80 }, children: [] }));
         });
@@ -648,9 +648,7 @@ export async function exportDocx(
             }),
           );
         if (p.bullets)
-          rows.push(
-            ...(bul(p.bullets, "bul-minimal", "475569") as Paragraph[]),
-          );
+          rows.push(...(bul(p.bullets, "bul-minimal", "475569") as unknown[]));
         rows.push(new Paragraph({ spacing: { after: 80 }, children: [] }));
       });
     }
@@ -673,9 +671,7 @@ export async function exportDocx(
             }),
           );
         if (p.bullets)
-          rows.push(
-            ...(bul(p.bullets, "bul-minimal", "475569") as Paragraph[]),
-          );
+          rows.push(...(bul(p.bullets, "bul-minimal", "475569") as unknown[]));
         rows.push(new Paragraph({ spacing: { after: 80 }, children: [] }));
       });
     }
