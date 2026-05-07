@@ -795,11 +795,12 @@ export async function exportDocx(
 
   // ─── BUILD & SAVE ─────────────────────────────────────────────────────────
   const sections = template === "minimal" ? buildMinimal() : buildClassic();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const doc = new Document({
     creator: "CV Dada by Nahian Alam",
     title: `${resume.full_name || "Resume"} — CV Dada`,
     numbering: numberingConfig,
-    sections,
+    sections: sections as any,
   });
   saveAs(
     await Packer.toBlob(doc),
