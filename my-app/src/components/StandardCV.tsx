@@ -401,9 +401,29 @@ const Classic = ({
             .filter((p) => p.type === "thesis" && p.name)
             .map((p) => (
               <div key={p.id} style={{ marginBottom: 8 }}>
-                <span style={{ fontFamily: F, fontWeight: 700, fontSize: 11 }}>
-                  {p.name}
-                </span>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <span
+                    style={{ fontFamily: F, fontWeight: 700, fontSize: 11 }}
+                  >
+                    {p.name}
+                  </span>
+                  {p.duration && (
+                    <span
+                      style={{
+                        fontFamily: F,
+                        fontSize: 9.5,
+                        color: "#444",
+                        fontStyle: "italic",
+                        flexShrink: 0,
+                        marginLeft: 8,
+                      }}
+                    >
+                      {p.duration}
+                    </span>
+                  )}
+                </div>
                 {p.link && (
                   <p
                     style={{
@@ -954,16 +974,38 @@ const Minimal = ({
             .filter((p) => p.type === "thesis" && p.name)
             .map((p) => (
               <div key={p.id} style={{ marginBottom: 8 }}>
-                <span
+                <div
                   style={{
-                    fontFamily: F,
-                    fontWeight: 800,
-                    fontSize: 10.5,
-                    color: "#0f172a",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
                   }}
                 >
-                  {p.name}
-                </span>
+                  <span
+                    style={{
+                      fontFamily: F,
+                      fontWeight: 800,
+                      fontSize: 10.5,
+                      color: "#0f172a",
+                    }}
+                  >
+                    {p.name}
+                  </span>
+                  {p.duration && (
+                    <span
+                      style={{
+                        fontFamily: F,
+                        fontSize: 8.5,
+                        color: "#94a3b8",
+                        fontStyle: "italic",
+                        flexShrink: 0,
+                        marginLeft: 8,
+                      }}
+                    >
+                      {p.duration}
+                    </span>
+                  )}
+                </div>
                 {p.link && (
                   <p
                     style={{

@@ -252,6 +252,7 @@ export async function exportDocx(
 
     const sh = (label: string) =>
       new Paragraph({
+        style: "Normal",
         spacing: { before: 220, after: 80 },
         border: {
           bottom: { style: BorderStyle.SINGLE, size: 6, color: "000000" },
@@ -414,6 +415,7 @@ export async function exportDocx(
         .forEach((s) => {
           rows.push(
             new Paragraph({
+              style: "Normal",
               spacing: { after: 50 },
               children: [
                 ...(s.category
@@ -433,6 +435,7 @@ export async function exportDocx(
         .forEach((c) => {
           rows.push(
             new Paragraph({
+              style: "Normal",
               spacing: { after: 50 },
               children: [
                 R(c.name, { bold: true }),
@@ -453,6 +456,7 @@ export async function exportDocx(
         .forEach((r) => {
           rows.push(
             new Paragraph({
+              style: "Normal",
               spacing: { after: 20 },
               children: [
                 R(r.name, { bold: true }),
@@ -522,6 +526,7 @@ export async function exportDocx(
 
     const sh = (label: string) =>
       new Paragraph({
+        style: "Normal",
         spacing: { before: 240, after: 80 },
         children: [
           R("▌ ", { color: "4f46e5", size: 20 }),
