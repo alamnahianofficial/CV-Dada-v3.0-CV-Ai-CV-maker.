@@ -1,4 +1,4 @@
-# CV Dada v2 — AI Powered CV Maker
+# CV Dada v3 — AI Powered CV Maker
 
 > **Precision built. Privacy first.**  
 > ATS-optimized resume builder with AI assistance — no accounts, no database, no tracking.
@@ -7,27 +7,25 @@ Built by **Nahian Alam**
 
 ---
 
-## What's New in v2
+## What's New in v3.0
 
-- Fixed passport photo overlap in preview
-- Fixed bullet point alignment in preview and Word export
-- Fixed CGPA right-alignment in exported `.docx`
-- Fixed all field name mismatches (`institution`, `cgpa`, `name`, `date`, `phone+email`)
-- Word-native hanging indent bullets via `docx` Numbering API
-- ATS calculator now scores education and project keywords correctly
+- **Resilient Gemini API Integration:** Switched default AI provider to Google's Gemini 2.5 Flash. Added auto-retry logic with exponential backoff for `503 Service Unavailable` and `429 Too Many Requests` API spikes.
+- **Fail-Safe DOCX Native Fallback:** Implemented programmatic client-side virtual link download fallback to bypass browser security policies blocking traditional `file-saver` Blob triggers.
+- **Sleek v3.0 Intro Loader Screen:** Created a gorgeous welcome splash animation using Framer Motion with glowing aurora backdrops, a spinning outline ring loader, and a pulsing v3.0 ping locator.
+- **Autofill Parser Alignment:** Corrected schema mismatches in `/api/ai` route. Structured data parsing for PDF/DOCX imports now correctly extracts and maps `institution`, `cgpa`, certifications `date`, and references `phone`+`email` fields.
+- **AI Prompt Starter Chips:** Tapping sector prompt chips (CS, Marketing, Finance, Customer Success) inside the generator modal auto-populates high-quality, pre-written description outlines.
+- **Quick-Action Operations:** Added global "Load Sample CV" (loads high-fidelity Digital Marketing Specialist details) and "Clear Form" buttons to speed up CV creation.
 
 ---
 
 ## Features
 
-- **Two professional templates** — Classic (Times New Roman, ATS-safe) and Minimal (Calibri, designer-ready)
-- **AI generation** — generate a full CV from a brief text description via Nvidia Nemotron
-- **AI improvement** — rewrite individual fields for ATS optimization
-- **CV import** — upload an existing PDF or DOCX and auto-fill all fields
-- **ATS score checker** — paste a job description and get a real-time keyword match score
-- **Passport photo support** — embedded correctly in both preview and Word export
-- **Word export only** — `.docx` with proper hanging-indent bullets, right-aligned dates, and embedded photo
-- **Session-based privacy** — all data lives in browser memory, gone on refresh
+- **Two professional templates** — Classic (Times New Roman, ATS-safe) and Minimal (Calibri, designer-ready) with native hanging-indent bullet alignments.
+- **AI generation & parsing** — generate a full CV from a brief text description or upload an old PDF or DOCX to auto-fill all fields in real-time.
+- **ATS score checker & coach** — paste target job descriptions to get matching keywords, missing skill tags, and automated optimization coaching.
+- **AI improvement** — optimize individual fields on the fly using a professional ATS-oriented rewrite coach.
+- **Passport photo support** — correctly crops and embeds user photos in both preview templates and `.docx` exports.
+- **Session-based privacy** — operates entirely locally. All data resides in React state, clearing instantly on browser refresh or tab close.
 
 ---
 
@@ -38,9 +36,10 @@ Built by **Nahian Alam**
 | Framework   | Next.js 16, React 19                                              |
 | Styling     | Tailwind CSS v4                                                   |
 | Language    | TypeScript                                                        |
+| Transitions | `framer-motion` v12                                               |
 | Word export | `docx` v9.6.1                                                     |
 | DOCX import | `jszip`                                                           |
-| AI          | OpenRouter → `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` |
+| AI Engine   | Google Gemini 2.5 Flash (via OpenAI-compatible `v1beta` endpoint) |
 
 ---
 
