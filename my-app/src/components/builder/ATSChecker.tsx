@@ -30,7 +30,7 @@ function ScoreRing({ score }: { score: number }) {
             cy="40"
             r="34"
             fill="none"
-            stroke="#1e293b"
+            stroke="rgba(255,255,255,0.08)"
             strokeWidth="8"
           />
           <circle
@@ -100,9 +100,20 @@ export default function ATSChecker({ resume }: Props) {
         className="abtn"
         style={{
           width: "100%",
-          background: "linear-gradient(135deg,#0f766e,#0d9488)",
-          opacity: !jobDescription.trim() ? 0.5 : 1,
+          background: jobDescription.trim()
+            ? "linear-gradient(135deg,#06b6d4,#6366f1)"
+            : "rgba(255,255,255,0.05)",
+          color: jobDescription.trim() ? "#fff" : "#64748b",
+          border: "none",
+          cursor: jobDescription.trim() ? "pointer" : "not-allowed",
+          boxShadow: jobDescription.trim()
+            ? "0 4px 15px rgba(6, 182, 212, 0.2)"
+            : "none",
+          opacity: 1,
           marginBottom: result ? 12 : 0,
+          padding: "12px 0",
+          borderRadius: 12,
+          fontWeight: 900,
         }}
       >
         Check ATS Score
@@ -117,9 +128,9 @@ export default function ATSChecker({ resume }: Props) {
               alignItems: "flex-start",
               gap: 16,
               padding: 12,
-              background: "rgba(15,23,42,0.7)",
-              border: "1px solid #1e293b",
-              borderRadius: 10,
+              background: "rgba(2, 6, 23, 0.4)",
+              border: "1px solid rgba(255, 255, 255, 0.05)",
+              borderRadius: 12,
             }}
           >
             <ScoreRing score={result.score} />
@@ -178,13 +189,13 @@ export default function ATSChecker({ resume }: Props) {
                   <span
                     key={kw}
                     style={{
-                      padding: "2px 8px",
-                      borderRadius: 999,
+                      padding: "3px 8px",
+                      borderRadius: 8,
                       fontSize: 10,
                       fontWeight: 600,
-                      background: "rgba(239,68,68,0.12)",
+                      background: "rgba(239,68,68,0.06)",
                       color: "#f87171",
-                      border: "1px solid rgba(239,68,68,0.25)",
+                      border: "1px solid rgba(239,68,68,0.15)",
                     }}
                   >
                     {kw}
@@ -212,13 +223,13 @@ export default function ATSChecker({ resume }: Props) {
                   <span
                     key={kw}
                     style={{
-                      padding: "2px 8px",
-                      borderRadius: 999,
+                      padding: "3px 8px",
+                      borderRadius: 8,
                       fontSize: 10,
                       fontWeight: 600,
-                      background: "rgba(34,197,94,0.1)",
-                      color: "#4ade80",
-                      border: "1px solid rgba(34,197,94,0.2)",
+                      background: "rgba(16, 185, 129, 0.06)",
+                      color: "#34d399",
+                      border: "1px solid rgba(16, 185, 129, 0.15)",
                     }}
                   >
                     {kw}

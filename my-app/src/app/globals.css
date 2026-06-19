@@ -5,41 +5,371 @@
   --font-serif: "Times New Roman", Times, serif;
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Montserrat", sans-serif;
-  --indigo: #6366f1;
-  --indigo-dark: #4f46e5;
+  --primary-glow: rgba(6, 182, 212, 0.15);
+  --secondary-glow: rgba(99, 102, 241, 0.15);
+  --accent-glow: rgba(217, 70, 239, 0.15);
 }
-body { background-color: #030712; color: #cbd5e1; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
-.a4-page { width: 210mm; min-height: 297mm; background: white !important; color: black !important; display: block; margin: 0 auto; overflow: hidden; }
-.sec-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 1.25rem 1.25rem 1rem; }
-.sec-label { font-size: 9px; font-weight: 900; color: #475569; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 10px; font-family: var(--font-display); }
-.di { width: 100%; background: #020617; border: 1px solid #1e293b; color: #e2e8f0; padding: 0.55rem 0.75rem; border-radius: 9px; outline: none; font-size: 12px; font-family: var(--font-sans); transition: border-color 0.15s; display: block; resize: vertical; box-sizing: border-box; }
-.di::placeholder { color: #334155; }
-.di:focus { border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99,102,241,0.12); }
-.abtn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; border: 1px solid #1e293b; background: #0f172a; color: #e2e8f0; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: all 0.15s; font-family: var(--font-display); }
-.abtn:hover:not(:disabled) { border-color: #6366f1; color: #a5b4fc; }
-.abtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.aibtn { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(99,102,241,0.3); background: rgba(99,102,241,0.08); color: #a5b4fc; font-size: 10px; font-weight: 700; cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; }
-.aibtn:hover:not(:disabled) { background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,0.5); }
-.aibtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.add-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; padding: 6px 12px; border-radius: 8px; border: 1px dashed #1e293b; background: transparent; color: #475569; font-size: 10px; font-weight: 700; cursor: pointer; transition: all 0.15s; text-transform: uppercase; letter-spacing: 0.08em; }
-.add-btn:hover { border-color: #6366f1; color: #a5b4fc; background: rgba(99,102,241,0.06); }
-.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px; border: 1px solid rgba(248,113,113,0.2); background: rgba(248,113,113,0.06); cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
-.icon-btn:hover { background: rgba(248,113,113,0.15); border-color: rgba(248,113,113,0.4); }
-.entry-divider { border: none; border-top: 1px solid #1e293b; margin: 12px 0; }
-.link-row { display: flex; align-items: center; gap: 8px; background: #020617; border: 1px solid #1e293b; border-radius: 9px; padding: 0 10px; height: 36px; transition: border-color 0.15s; }
-.link-row:focus-within { border-color: #6366f1; }
-.link-row input { flex: 1; background: transparent; border: none; outline: none; font-size: 12px; color: #e2e8f0; font-family: var(--font-sans); }
-.link-row input::placeholder { color: #334155; }
-.ai-modal-bg { position: fixed; inset: 0; background: rgba(3,7,18,0.85); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 1rem; }
-.ai-modal { background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; padding: 2rem; width: 100%; max-width: 540px; box-shadow: 0 40px 100px rgba(0,0,0,0.7); }
-.scrollbar-hide::-webkit-scrollbar { display: none; }
-.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-.font-montserrat { font-family: var(--font-display); }
-.font-inter { font-family: var(--font-sans); }
+
+body {
+  background-color: #030712;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(217, 70, 239, 0.03) 0px, transparent 50%);
+  color: #cbd5e1;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background-attachment: fixed;
+}
+
+/* ── PREMIUM A4 CANVAS ── */
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white !important;
+  color: black !important;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+}
+
+/* ── FROSTED GLASS CARDS ── */
+.sec-box {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sec-box:hover {
+  border-color: rgba(6, 182, 212, 0.25);
+  background: rgba(15, 23, 42, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    0 0 20px 0 rgba(6, 182, 212, 0.05);
+}
+
+/* ── PREMIUM SECTION LABELS ── */
+.sec-label {
+  font-size: 10px;
+  font-weight: 900;
+  color: #06b6d4;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  background: linear-gradient(135deg, #06b6d4, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* ── TACTILE INPUT FIELDS ── */
+.di {
+  width: 100%;
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  outline: none;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  transition: all 0.2s ease;
+  display: block;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.di::placeholder {
+  color: rgba(148, 163, 184, 0.45);
+}
+
+.di:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(2, 6, 23, 0.8);
+}
+
+.di:focus {
+  border-color: #06b6d4;
+  background: rgba(2, 6, 23, 0.9);
+  box-shadow: 
+    0 0 0 1px rgba(6, 182, 212, 0.5),
+    0 0 20px rgba(6, 182, 212, 0.12);
+}
+
+/* ── GLOWING GLASS ACTION BUTTONS ── */
+.abtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.6);
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-display);
+}
+
+.abtn:hover:not(:disabled) {
+  border-color: rgba(6, 182, 212, 0.5);
+  background: rgba(6, 182, 212, 0.08);
+  color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);
+}
+
+.abtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.abtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── CYBER NEON AI BUTTONS ── */
+.aibtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 70, 239, 0.25);
+  background: rgba(217, 70, 239, 0.06);
+  color: #f472b6;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.aibtn:hover:not(:disabled) {
+  background: rgba(217, 70, 239, 0.15);
+  border-color: rgba(217, 70, 239, 0.55);
+  color: #f472b6;
+  box-shadow: 0 0 15px rgba(217, 70, 239, 0.25);
+  transform: translateY(-0.5px);
+}
+
+.aibtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── SLEEK DASHED ADD BUTTONS ── */
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.add-btn:hover {
+  border-style: solid;
+  border-color: rgba(6, 182, 212, 0.45);
+  color: #38bdf8;
+  background: rgba(6, 182, 212, 0.03);
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.05);
+}
+
+/* ── PREMIUM ICON DUSTBIN BUTTONS ── */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(248, 113, 113, 0.15);
+  background: rgba(248, 113, 113, 0.04);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: rgba(248, 113, 113, 0.18);
+  border-color: rgba(248, 113, 113, 0.45);
+  box-shadow: 0 0 15px rgba(248, 113, 113, 0.2);
+  transform: translateY(-0.5px);
+}
+
+/* ── DECORATIVE DIVIDERS ── */
+.entry-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 16px 0;
+}
+
+/* ── LINK ROWS ── */
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0 12px;
+  height: 42px;
+  transition: all 0.2s ease;
+}
+
+.link-row:focus-within {
+  border-color: #06b6d4;
+  background: rgba(2, 6, 23, 0.9);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.12);
+}
+
+.link-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: #f1f5f9;
+  font-family: var(--font-sans);
+}
+
+.link-row input::placeholder {
+  color: rgba(148, 163, 184, 0.4);
+}
+
+/* ── GLASSMOPHIC MODAL ── */
+.ai-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 10, 0.75);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1.25rem;
+}
+
+.ai-modal {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 2.25rem;
+  width: 100%;
+  max-width: 550px;
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.8),
+    0 0 80px rgba(99, 102, 241, 0.05);
+  backdrop-filter: blur(20px);
+}
+
+/* ── CUSTOM SCROLLBAR OVERRIDES ── */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── OTHER UTILITIES ── */
+.font-montserrat {
+  font-family: var(--font-display);
+}
+.font-inter {
+  font-family: var(--font-sans);
+}
+
+/* ── KEYFRAME ANIMATIONS FOR SIMULATED MOCKUP ── */
+.mock-type-name {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #06b6d4;
+  white-space: nowrap;
+  width: 0;
+  animation: typing-name 8s steps(9) infinite, blink 0.75s step-end infinite;
+}
+
+.mock-type-role {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #06b6d4;
+  white-space: nowrap;
+  width: 0;
+  animation: typing-role 8s steps(17) infinite, blink 0.75s step-end infinite;
+}
+
+.mock-preview-val {
+  animation: preview-update 8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #06b6d4; }
+}
+
+@keyframes typing-name {
+  0%, 5% { width: 0; }
+  25%, 80% { width: 9ch; }
+  90%, 100% { width: 0; }
+}
+
+@keyframes typing-role {
+  0%, 25% { width: 0; }
+  50%, 80% { width: 17ch; }
+  90%, 100% { width: 0; }
+}
+
+@keyframes preview-update {
+  0%, 15% { opacity: 0; transform: translateY(2px); }
+  30%, 80% { opacity: 1; transform: translateY(0); }
+  90%, 100% { opacity: 0; transform: translateY(2px); }
+}
+
+/* ── SCREEN PRINT OVERRIDES ── */
 @media print {
-  body { background: white !important; }
-  .no-print, header, aside { display: none !important; }
-  main { height: auto !important; }
-  section { overflow: visible !important; }
-  #resume-preview { transform: none !important; box-shadow: none !important; }
+  body {
+    background: white !important;
+    background-image: none !important;
+  }
+  .no-print, header, aside, .lg\:hidden {
+    display: none !important;
+  }
+  main {
+    height: auto !important;
+  }
+  section {
+    overflow: visible !important;
+  }
+  #resume-preview {
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }

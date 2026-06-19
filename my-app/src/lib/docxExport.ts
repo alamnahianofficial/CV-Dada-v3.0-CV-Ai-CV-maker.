@@ -29,7 +29,7 @@ export async function exportDocx(
     LevelFormat,
     TabStopType,
   } = await import("docx");
-  const { saveAs } = await import("file-saver");
+  const fileSaverModule = await import("file-saver");
 
   // ─── PHOTO → BUFFER ───────────────────────────────────────────────────────
   type ImgType = "png" | "jpg" | "gif" | "bmp";
@@ -807,8 +807,28 @@ export async function exportDocx(
     numbering: numberingConfig,
     sections: sections as any,
   });
-  saveAs(
-    await Packer.toBlob(doc),
-    `${(resume.full_name || "Resume").replace(/\s+/g, "_")}_${template}_CVDada.docx`,
-  );
+  const blob = await Packer.toBlob(doc);
+  const filename = `${(resume.full_name || "Resume").replace(/\s+/g, "_")}_${template}_CVDada.docx`;
+  const saveAsFunc = fileSaverModule.saveAs || fileSaverModule.default?.saveAs || fileSaverModule.default;
+
+  let success = false;
+  if (typeof saveAsFunc === "function") {
+    try {
+      saveAsFunc(blob, filename);
+      success = true;
+    } catch (e) {
+      console.warn("file-saver failed, falling back to native download", e);
+    }
+  }
+
+  if (!success) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 }

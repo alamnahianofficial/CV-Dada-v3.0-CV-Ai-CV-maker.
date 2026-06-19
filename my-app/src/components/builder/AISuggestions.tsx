@@ -39,6 +39,7 @@ export default function AISuggestions({ resume, jobDescription }: Props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          mode: "suggest",
           prompt: `You are a professional resume coach. Analyze the job description and resume below. Return ONLY a JSON object with this exact structure, no markdown:
 {"suggestions": ["suggestion 1", "suggestion 2", "suggestion 3", "suggestion 4", "suggestion 5"]}
 
@@ -55,7 +56,9 @@ ${resumeText.slice(0, 600)}`,
       const data = await res.json();
       let parsed: string[] = [];
 
-      if (Array.isArray(data.extras) && data.extras.length > 0) {
+      if (Array.isArray(data.suggestions)) {
+        parsed = data.suggestions.filter(Boolean);
+      } else if (Array.isArray(data.extras) && data.extras.length > 0) {
         parsed = data.extras
           .map((e: { value: string }) => e.value)
           .filter(Boolean);

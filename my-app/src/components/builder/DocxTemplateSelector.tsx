@@ -36,12 +36,12 @@ export default function DocxTemplateSelector({
   exporting,
 }: Props) {
   return (
-    <div className="sec-box" style={{ borderColor: "rgba(99,102,241,0.25)" }}>
+    <div className="sec-box" style={{ borderColor: "rgba(6, 182, 212, 0.25)" }}>
       <div
         style={{
           fontSize: 9,
           fontWeight: 900,
-          color: "#a5b4fc",
+          color: "#06b6d4",
           textTransform: "uppercase",
           letterSpacing: "0.2em",
           marginBottom: 12,
@@ -67,16 +67,16 @@ export default function DocxTemplateSelector({
               style={{
                 width: "100%",
                 textAlign: "left",
-                padding: "10px 12px",
+                padding: "12px 14px",
                 borderRadius: 12,
                 border: active
-                  ? "1px solid rgba(99,102,241,0.5)"
-                  : "1px solid #1e293b",
+                  ? "1px solid rgba(6, 182, 212, 0.45)"
+                  : "1px solid rgba(255, 255, 255, 0.05)",
                 background: active
-                  ? "rgba(99,102,241,0.08)"
-                  : "rgba(15,23,42,0.5)",
+                  ? "rgba(6, 182, 212, 0.08)"
+                  : "rgba(2, 6, 23, 0.4)",
                 cursor: "pointer",
-                transition: "all 0.15s",
+                transition: "all 0.2s ease",
                 display: "flex",
                 alignItems: "center",
                 gap: 12,
@@ -84,13 +84,14 @@ export default function DocxTemplateSelector({
             >
               <div
                 style={{
-                  padding: 7,
+                  padding: 8,
                   borderRadius: 8,
-                  background: active ? "#4f46e5" : "#1e293b",
+                  background: active ? "#06b6d4" : "rgba(255, 255, 255, 0.05)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   flexShrink: 0,
+                  transition: "all 0.2s ease",
                 }}
               >
                 <t.icon size={14} color={active ? "#fff" : "#64748b"} />
@@ -118,7 +119,7 @@ export default function DocxTemplateSelector({
                       style={{
                         fontSize: 8,
                         fontWeight: 900,
-                        background: "#4f46e5",
+                        background: "#06b6d4",
                         color: "#fff",
                         padding: "1px 6px",
                         borderRadius: 4,
@@ -156,10 +157,10 @@ export default function DocxTemplateSelector({
           borderRadius: 12,
           border: "none",
           background: exporting
-            ? "#1e293b"
-            : "linear-gradient(135deg,#4f46e5,#7c3aed)",
+            ? "rgba(255, 255, 255, 0.05)"
+            : "linear-gradient(135deg,#06b6d4,#6366f1)",
           color: exporting ? "#64748b" : "#fff",
-          fontWeight: 900,
+          fontWeight: 950,
           fontSize: 11,
           textTransform: "uppercase",
           letterSpacing: "0.12em",
@@ -168,8 +169,8 @@ export default function DocxTemplateSelector({
           alignItems: "center",
           justifyContent: "center",
           gap: 8,
-          transition: "all 0.2s",
-          boxShadow: exporting ? "none" : "0 4px 20px rgba(79,70,229,0.3)",
+          transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+          boxShadow: exporting ? "none" : "0 4px 20px rgba(6, 182, 212, 0.25)",
         }}
       >
         {exporting ? (
