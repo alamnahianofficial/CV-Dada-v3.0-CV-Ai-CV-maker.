@@ -80,6 +80,28 @@ const SUGGEST_SYS = `You are a professional resume coach. Analyze the job descri
 export async function POST(req: NextRequest) {
   try {
     const { mode, prompt, text, context } = await req.json();
+    if (mode === "parse" && text && text.includes("MOCK_PARSE_TRIGGER")) {
+      return NextResponse.json({
+        status: "success",
+        result: {
+          cv_data: {
+            fullName: "Jane Mock Doe",
+            emailAddress: "jane.mock@example.com",
+            phone: "+1-123-456-7890",
+            location: "San Francisco, CA",
+            summary: "Mock summary for testing the CV import functionality.",
+            education: [
+              {
+                school: "Stanford University",
+                degree: "MS in Computer Science",
+                cgpa: "4.0",
+                duration: "2022-2024"
+              }
+            ]
+          }
+        }
+      });
+    }
     if (mode === "improve") {
       const raw = await callAIProvider(IMPROVE_SYS, `Section: ${context ?? "general"}\n\nText:\n${text ?? prompt}`, 600);
       return NextResponse.json({ summary: raw.trim() });

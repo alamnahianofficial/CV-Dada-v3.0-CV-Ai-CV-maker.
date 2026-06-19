@@ -62,23 +62,24 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-8"
+          className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-6"
         >
-          The Resume Engine.
+          CV Dada.
           <br />
-          <span className="bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Refined to perfection.
+          <span className="bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent" style={{fontFamily: '"Hind Siliguri", sans-serif', fontWeight: 900}}>
+            সিভি বানান শর্টকাটে।
           </span>
         </motion.h1>
+
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.18 }}
           className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-inter"
         >
-          Build high-fidelity, ATS-optimized professional resumes in minutes. 
-          No accounts, no tracking, no database storage. Operates 100% locally.
+          AI দিয়ে ATS-optimized CV বানাও মিনিটের মধ্যে।{" "}
+          <span className="text-slate-500">No accounts, no tracking — runs 100% in your browser.</span>
         </motion.p>
 
         <motion.div
@@ -93,7 +94,7 @@ export default function LandingPage() {
             style={{ background: "linear-gradient(135deg, #06b6d4, #6366f1)" }}
           >
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            Build My Resume Now
+            Build My CV Now
             <ArrowRight
               size={18}
               className="group-hover:translate-x-1.5 transition-transform duration-300"
@@ -262,10 +263,10 @@ export default function LandingPage() {
               <div className="p-3.5 rounded-2xl bg-purple-950/15 border border-purple-500/10 text-pink-400 w-fit mb-4">
                 <Zap size={20} />
               </div>
-              <span className="text-[10px] font-black text-purple-400 uppercase tracking-widest">Co-pilot</span>
-              <h3 className="text-xl font-black text-white mt-1 mb-2">Nemotron AI</h3>
+              <span className="text-[10px] font-black text-purple-400 uppercase tracking-widest">AI Co-pilot</span>
+              <h3 className="text-xl font-black text-white mt-1 mb-2">Gemini AI</h3>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Generate tailored bullet points, experience summaries, and skill keywords derived directly from your target job description.
+                Generate tailored bullet points, experience summaries, and skill keywords derived directly from your target job description — powered by Google Gemini.
               </p>
             </div>
 

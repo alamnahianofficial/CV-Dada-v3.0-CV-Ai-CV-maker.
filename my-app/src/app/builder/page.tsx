@@ -240,6 +240,22 @@ export default function BuilderPage() {
             <ShieldCheck size={14} className="text-cyan-400" /> Private
             Session
           </div>
+          {/* Powered by Gemini badge */}
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-2xl border border-[rgba(66,133,244,0.25)] bg-[rgba(66,133,244,0.06)] hover:border-[rgba(66,133,244,0.4)] hover:bg-[rgba(66,133,244,0.1)] transition-all duration-300 cursor-default group">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+              <path d="M12 2L13.9 8.1L20 10L13.9 11.9L12 18L10.1 11.9L4 10L10.1 8.1L12 2Z" fill="url(#gemini-grad)" />
+              <defs>
+                <linearGradient id="gemini-grad" x1="4" y1="2" x2="20" y2="18" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#4285F4" />
+                  <stop offset="0.5" stopColor="#9C27B0" />
+                  <stop offset="1" stopColor="#EA4335" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="text-[9px] font-black uppercase tracking-[0.18em] bg-clip-text text-transparent" style={{backgroundImage: 'linear-gradient(90deg, #4285F4, #9C27B0, #EA4335)'}}>
+              Powered by Gemini
+            </span>
+          </div>
           <button
             onClick={() => setAiModalOpen(true)}
             className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl bg-linear-to-r from-cyan-500 to-indigo-600 text-white font-black text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-[1.01] active:scale-100 transition-all flex items-center gap-2 border-0 cursor-pointer shadow-md"
