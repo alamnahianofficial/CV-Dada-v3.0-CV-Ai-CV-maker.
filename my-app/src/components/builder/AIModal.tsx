@@ -56,33 +56,64 @@ export default function AIModal({ open, aiBrief, onChange, onClose, onGenerate, 
               Tell the AI your name, education, work history, skills, etc. It generates a complete professional CV instantly.
             </p>
 
-            <textarea
-              className="di min-h-20 text-sm mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ minHeight: 180 }}
-              placeholder={"Example:\nMy name is Alex Rahman. I have a degree in Computer Science from BUET (2020–2024, CGPA 3.7). I worked as a junior developer at TechCorp Jan 2024 – Present building React dashboards. Skills: JavaScript, React, Node.js, Python, SQL."}
-              value={aiBrief}
-              onChange={(e) => onChange(e.target.value)}
-              disabled={genStatus === "Calling AI…" || genStatus === "Parsing…"}
-            />
-
-            {/* Quick-Prompt Starter Chips */}
-            <div className="mb-5">
-              <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-2">
-                Starter Prompts
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {STARTER_PROMPTS.map((p) => (
-                  <button
-                    key={p.label}
-                    onClick={() => onChange(p.prompt)}
-                    disabled={genStatus === "Calling AI…" || genStatus === "Parsing…"}
-                    className="px-3 py-1.5 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 hover:border-indigo-500/40 text-indigo-300 font-semibold text-[11px] uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm hover:shadow-indigo-500/5 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {p.label}
-                  </button>
-                ))}
+            {genStatus === "Calling AI…" || genStatus === "Parsing…" ? (
+              <div className="flex flex-col items-center justify-center py-10 relative overflow-hidden bg-slate-950/40 rounded-2xl border border-white/5 my-4 min-h-[260px]">
+                {/* Glowing ambient dots */}
+                <div className="absolute w-48 h-48 bg-indigo-500/10 blur-[60px] rounded-full pointer-events-none" />
+                
+                {/* Sweeping scan light */}
+                <motion.div
+                  animate={{ y: ["-100%", "100%"] }}
+                  transition={{ repeat: Infinity, duration: 2.2, ease: "linear" }}
+                  className="absolute inset-x-0 h-16 bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent pointer-events-none"
+                />
+                
+                {/* Rotating scanner ring */}
+                <div className="relative mb-6">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                    className="w-16 h-16 rounded-full border border-dashed border-cyan-500/40 flex items-center justify-center"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Sparkles className="text-cyan-400 animate-pulse" size={24} />
+                  </div>
+                </div>
+                
+                <h3 className="text-white font-extrabold text-sm uppercase tracking-widest mb-1.5">{genStatus}</h3>
+                <p className="text-slate-500 text-[10px] uppercase tracking-wider animate-pulse">Generating ATS-Optimized CV structure...</p>
               </div>
-            </div>
+            ) : (
+              <>
+                <textarea
+                  className="di min-h-20 text-sm mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ minHeight: 180 }}
+                  placeholder={"Example:\nMy name is Alex Rahman. I have a degree in Computer Science from BUET (2020–2024, CGPA 3.7). I worked as a junior developer at TechCorp Jan 2024 – Present building React dashboards. Skills: JavaScript, React, Node.js, Python, SQL."}
+                  value={aiBrief}
+                  onChange={(e) => onChange(e.target.value)}
+                  disabled={genStatus === "Calling AI…" || genStatus === "Parsing…"}
+                />
+
+                {/* Quick-Prompt Starter Chips */}
+                <div className="mb-5">
+                  <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-2">
+                    Starter Prompts
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {STARTER_PROMPTS.map((p) => (
+                      <button
+                        key={p.label}
+                        onClick={() => onChange(p.prompt)}
+                        disabled={genStatus === "Calling AI…" || genStatus === "Parsing…"}
+                        className="px-3 py-1.5 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 hover:border-indigo-500/40 text-indigo-300 font-semibold text-[11px] uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm hover:shadow-indigo-500/5 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
 
             <div className="flex gap-3">
               <button
