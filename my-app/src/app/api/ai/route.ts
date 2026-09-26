@@ -4,8 +4,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 async function callAIProvider(system: string, user: string, maxTokens = 2000) {
   const baseURL = process.env.AI_API_BASE_URL || "https://openrouter.ai/api/v1";
-  const key = process.env.AI_API_KEY || process.env.OPENROUTER_API_KEY || "";
-  const model = process.env.AI_MODEL || "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free";
+  const key = process.env.AI_API_KEY || process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY || "";
+  const model = process.env.AI_MODEL || "gemini-3.8-flash";
 
   if (!key) {
     throw new Error("API Key not found. Please configure AI_API_KEY or OPENROUTER_API_KEY in .env.local");

@@ -73,26 +73,35 @@ function hydrateIds(data: AIResponse): ResumeData {
       duration: getVal(e, ["duration", "dates", "year", "years"]) ?? "",
       id: uid(),
     })),
-    experience: (getVal(d, ["experience", "exp", "work_history", "history", "experiences"]) ?? []).map((e: any) => ({
-      role: getVal(e, ["role", "title", "job_title", "position"]) ?? "",
-      org: getVal(e, ["org", "company", "organization", "employer"]) ?? "",
-      duration: getVal(e, ["duration", "dates", "years"]) ?? "",
-      bullets: getVal(e, ["bullets", "description", "responsibilities", "tasks"]) ?? "",
-      id: uid(),
-    })),
-    projects: (getVal(d, ["projects", "proj", "project"]) ?? []).map((e: any) => ({
-      name: getVal(e, ["name", "title", "project_name"]) ?? "",
-      link: getVal(e, ["link", "url", "project_url"]) ?? "",
-      duration: getVal(e, ["duration", "dates", "year"]) ?? "",
-      bullets: getVal(e, ["bullets", "description"]) ?? "",
-      type: (getVal(e, ["type"]) ?? "project") as "project" | "thesis",
-      id: uid(),
-    })),
-    skills: (getVal(d, ["skills", "skill"]) ?? []).map((e: any) => ({
-      category: getVal(e, ["category", "name", "skill_type"]) ?? "",
-      skills: getVal(e, ["skills", "list", "items"]) ?? "",
-      id: uid(),
-    })),
+    experience: (getVal(d, ["experience", "exp", "work_history", "history", "experiences"]) ?? []).map((e: any) => {
+      const b = getVal(e, ["bullets", "description", "responsibilities", "tasks"]);
+      return {
+        role: getVal(e, ["role", "title", "job_title", "position"]) ?? "",
+        org: getVal(e, ["org", "company", "organization", "employer"]) ?? "",
+        duration: getVal(e, ["duration", "dates", "years"]) ?? "",
+        bullets: Array.isArray(b) ? b.join("\n") : (b ?? ""),
+        id: uid(),
+      };
+    }),
+    projects: (getVal(d, ["projects", "proj", "project"]) ?? []).map((e: any) => {
+      const b = getVal(e, ["bullets", "description"]);
+      return {
+        name: getVal(e, ["name", "title", "project_name"]) ?? "",
+        link: getVal(e, ["link", "url", "project_url"]) ?? "",
+        duration: getVal(e, ["duration", "dates", "year"]) ?? "",
+        bullets: Array.isArray(b) ? b.join("\n") : (b ?? ""),
+        type: (getVal(e, ["type"]) ?? "project") as "project" | "thesis",
+        id: uid(),
+      };
+    }),
+    skills: (getVal(d, ["skills", "skill"]) ?? []).map((e: any) => {
+      const s = getVal(e, ["skills", "list", "items"]);
+      return {
+        category: getVal(e, ["category", "name", "skill_type"]) ?? "",
+        skills: Array.isArray(s) ? s.join(", ") : (s ?? ""),
+        id: uid(),
+      };
+    }),
     certifications: (getVal(d, ["certifications", "certs", "credentials"]) ?? []).map((e: any) => ({
       name: getVal(e, ["name", "title", "certification_name"]) ?? "",
       issuer: getVal(e, ["issuer", "org", "issuing_organization", "authority"]) ?? "",
