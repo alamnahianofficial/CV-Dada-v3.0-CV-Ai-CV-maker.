@@ -17,14 +17,14 @@ const TEMPLATES: {
 }[] = [
   {
     id: "classic",
-    name: "Classic  (ATS-Safe)",
+    name: "Classic (ATS-Safe)",
     desc: "Single-column · Times New Roman · Best for ATS scanners & recruiters",
     icon: FileText,
   },
   {
     id: "minimal",
-    name: "Minimal  (Designer)",
-    desc: "Clean · Calibri · Indigo accents · Elegant for creative roles",
+    name: "Minimal (Designer)",
+    desc: "Clean · Calibri · Elegant for creative roles",
     icon: Layout,
   },
 ];
@@ -36,12 +36,12 @@ export default function DocxTemplateSelector({
   exporting,
 }: Props) {
   return (
-    <div className="sec-box" style={{ borderColor: "rgba(6, 182, 212, 0.25)" }}>
+    <div className="sec-box">
       <div
         style={{
           fontSize: 9,
-          fontWeight: 900,
-          color: "#06b6d4",
+          fontWeight: 800,
+          color: "#171717",
           textTransform: "uppercase",
           letterSpacing: "0.2em",
           marginBottom: 12,
@@ -68,13 +68,13 @@ export default function DocxTemplateSelector({
                 width: "100%",
                 textAlign: "left",
                 padding: "12px 14px",
-                borderRadius: 12,
+                borderRadius: 10,
                 border: active
-                  ? "1px solid rgba(6, 182, 212, 0.45)"
-                  : "1px solid rgba(255, 255, 255, 0.05)",
+                  ? "1px solid #171717"
+                  : "1px solid #e5e5e5",
                 background: active
-                  ? "rgba(6, 182, 212, 0.08)"
-                  : "rgba(2, 6, 23, 0.4)",
+                  ? "#fafafa"
+                  : "#ffffff",
                 cursor: "pointer",
                 transition: "all 0.2s ease",
                 display: "flex",
@@ -86,7 +86,7 @@ export default function DocxTemplateSelector({
                 style={{
                   padding: 8,
                   borderRadius: 8,
-                  background: active ? "#06b6d4" : "rgba(255, 255, 255, 0.05)",
+                  background: active ? "#171717" : "#f5f5f5",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -94,7 +94,7 @@ export default function DocxTemplateSelector({
                   transition: "all 0.2s ease",
                 }}
               >
-                <t.icon size={14} color={active ? "#fff" : "#737373"} />
+                <t.icon size={14} color={active ? "#ffffff" : "#737373"} />
               </div>
               <div style={{ flex: 1 }}>
                 <div
@@ -107,9 +107,9 @@ export default function DocxTemplateSelector({
                 >
                   <span
                     style={{
-                      fontSize: 11,
-                      fontWeight: 800,
-                      color: active ? "#fff" : "#525252",
+                      fontSize: 12,
+                      fontWeight: 700,
+                      color: active ? "#171717" : "#525252",
                     }}
                   >
                     {t.name}
@@ -118,10 +118,10 @@ export default function DocxTemplateSelector({
                     <span
                       style={{
                         fontSize: 8,
-                        fontWeight: 900,
-                        background: "#06b6d4",
-                        color: "#fff",
-                        padding: "1px 6px",
+                        fontWeight: 700,
+                        background: "#171717",
+                        color: "#ffffff",
+                        padding: "2px 6px",
                         borderRadius: 4,
                         textTransform: "uppercase",
                         letterSpacing: "0.1em",
@@ -153,24 +153,21 @@ export default function DocxTemplateSelector({
         disabled={exporting}
         style={{
           width: "100%",
-          padding: "13px 0",
-          borderRadius: 12,
+          padding: "12px 0",
+          borderRadius: 10,
           border: "none",
-          background: exporting
-            ? "rgba(255, 255, 255, 0.05)"
-            : "linear-gradient(135deg,#06b6d4,#6366f1)",
-          color: exporting ? "#737373" : "#fff",
-          fontWeight: 950,
+          background: exporting ? "#e5e5e5" : "#171717",
+          color: exporting ? "#a3a3a3" : "#ffffff",
+          fontWeight: 700,
           fontSize: 11,
           textTransform: "uppercase",
-          letterSpacing: "0.12em",
+          letterSpacing: "0.1em",
           cursor: exporting ? "not-allowed" : "pointer",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           gap: 8,
-          transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
-          boxShadow: exporting ? "none" : "0 4px 20px rgba(6, 182, 212, 0.25)",
+          transition: "all 0.2s ease",
         }}
       >
         {exporting ? (
