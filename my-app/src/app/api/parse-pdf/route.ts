@@ -11,7 +11,12 @@ export async function POST(req: NextRequest) {
 
     let text = "";
     try {
-      const parser = new PDFParse({ verbosity: VerbosityLevel.ERRORS, data: buffer });
+      const parser = new PDFParse({ 
+        verbosity: VerbosityLevel.ERRORS, 
+        data: buffer,
+        disableWorker: true,
+        isEvalSupported: false
+      });
       await (parser as any).load();
       const result = await parser.getText();
       text = result?.text ?? (typeof result === "string" ? result : "");
