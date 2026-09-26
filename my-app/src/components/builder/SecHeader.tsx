@@ -21,8 +21,8 @@ export default function SecHeader({ id, label, num, collapsed, onToggle }: SecHe
     >
       <div className="sec-label mb-0">{num} · {label}</div>
       {collapsed[id]
-        ? <ChevronDown size={14} color="#475569" />
-        : <ChevronUp  size={14} color="#475569" />}
+        ? <ChevronDown size={14} color="#737373" />
+        : <ChevronUp  size={14} color="#737373" />}
     </button>
   );
 }

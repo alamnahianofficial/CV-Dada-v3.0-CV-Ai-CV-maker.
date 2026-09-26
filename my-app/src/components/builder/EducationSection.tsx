@@ -42,7 +42,7 @@ export default function EducationSection({
                 </span>
                 {idx > 0 && (
                   <button className="icon-btn" onClick={() => ops.remove(e.id)}>
-                    <Trash2 size={12} color="#f87171" />
+                    <Trash2 size={12} color="#dc2626" />
                   </button>
                 )}
               </div>

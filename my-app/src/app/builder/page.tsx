@@ -211,22 +211,18 @@ export default function BuilderPage() {
       <AnimatePresence>
         {introLoading && <IntroWelcomeScreen />}
       </AnimatePresence>
-      <div className="min-h-screen bg-[#030712] text-slate-200 font-sans relative overflow-x-hidden">
-      {/* Background Aurora lighting */}
-      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-10 left-1/4 w-[400px] h-[400px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="min-h-screen bg-[#fafafa] text-[#171717] font-sans relative overflow-x-hidden">
 
       {/* ── HEADER ── */}
-      <header className="sticky top-0 z-[100] bg-[#030712]/80 backdrop-blur-2xl border-b border-white/5 px-4 sm:px-8 h-20 flex items-center justify-between no-print">
+      <header className="sticky top-0 z-[100] bg-[#fafafa]/80 backdrop-blur-2xl border-b border-black/5 px-4 sm:px-8 h-20 flex items-center justify-between no-print">
         <div className="flex items-center gap-4">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-linear-to-r from-cyan-400 to-indigo-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000" />
-            <div className="relative w-11 h-11 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center font-black text-white text-xl font-montserrat shadow-md">
+            <div className="relative w-10 h-10 rounded-lg bg-[#171717] border border-black/10 flex items-center justify-center font-bold text-white text-lg font-montserrat shadow-sm">
               D
             </div>
           </div>
           <div>
-            <h1 className="text-xl font-black tracking-tighter bg-linear-to-r from-white to-slate-400 bg-clip-text text-transparent leading-none uppercase font-montserrat">
+            <h1 className="text-xl font-bold tracking-tight text-[#171717] leading-none uppercase font-montserrat">
               CV Dada
             </h1>
             <p className="text-[9px] font-black text-cyan-400 uppercase tracking-[0.25em] mt-1.5 opacity-80">
@@ -236,9 +232,8 @@ export default function BuilderPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden xl:flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/[3%] border border-white/5 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-            <ShieldCheck size={14} className="text-cyan-400" /> Private
-            Session
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/5 border border-black/5 text-[10px] font-bold text-[#525252] uppercase tracking-widest">
+            <ShieldCheck size={14} className="text-[#171717]" /> Private Session
           </div>
           {/* Powered by Gemini badge */}
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-2xl border border-[rgba(66,133,244,0.25)] bg-[rgba(66,133,244,0.06)] hover:border-[rgba(66,133,244,0.4)] hover:bg-[rgba(66,133,244,0.1)] transition-all duration-300 cursor-default group">
@@ -258,9 +253,9 @@ export default function BuilderPage() {
           </div>
           <button
             onClick={() => setAiModalOpen(true)}
-            className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl bg-linear-to-r from-cyan-500 to-indigo-600 text-white font-black text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-[1.01] active:scale-100 transition-all flex items-center gap-2 border-0 cursor-pointer shadow-md"
+            className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-[#171717] text-white font-medium text-xs uppercase tracking-widest hover:bg-[#262626] active:scale-95 transition-all flex items-center gap-2 border-0 cursor-pointer shadow-sm"
           >
-            <Sparkles size={14} className="animate-pulse" />
+            <Sparkles size={14} />
             <span>
               <span className="hidden sm:inline">AI Generate</span>
               <span className="sm:hidden">AI Gen</span>
@@ -271,7 +266,7 @@ export default function BuilderPage() {
 
       <main className="flex h-[calc(100vh-80px)] relative">
         {/* ── EDITOR ── */}
-        <aside className={`w-full lg:w-[540px] xl:w-[640px] overflow-y-auto border-r border-white/5 bg-[#030712] p-6 sm:p-8 space-y-8 scrollbar-hide no-print ${
+        <aside className={`w-full lg:w-[540px] xl:w-[640px] overflow-y-auto border-r border-black/10 bg-white p-6 sm:p-8 space-y-8 scrollbar-hide no-print ${
           activeTab === "edit" ? "block" : "hidden lg:block"
         }`}>
           <div className="max-w-2xl mx-auto space-y-5 pb-24">
@@ -303,28 +298,27 @@ export default function BuilderPage() {
                 onClick={() => {
                   setResume(demoResume());
                 }}
-                className="py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 hover:border-cyan-500/50 text-cyan-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:shadow-cyan-500/10"
+                className="py-2.5 px-4 rounded-lg bg-black/5 hover:bg-black/10 border border-black/5 hover:border-black/10 text-[#171717] font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
-                <Sparkles size={14} className="text-cyan-400" />
-                Load Sample CV
+                <Sparkles size={14} />
+                Sample CV
               </button>
               <button
                 onClick={() => {
                   setResume(initResume());
                   setPhoto(null);
                 }}
-                className="py-3 px-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 hover:border-red-500/40 text-red-400 font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:shadow-red-500/5"
+                className="py-2.5 px-4 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-600 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
-                <Eraser size={14} className="text-red-400" />
+                <Eraser size={14} />
                 Clear Form
               </button>
             </div>
 
-            <div className="flex items-center gap-2 p-3 rounded-xl bg-slate-900/50 border border-slate-800 text-slate-400 text-[10px] italic">
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-black/5 border border-black/5 text-[#737373] text-[11px] font-medium">
               <Eraser size={13} />
               <span>
-                Session Mode: data clears on refresh. CV Dada · Built by Nahian
-                Alam.
+                Session Mode: data clears on refresh. CV Dada
               </span>
             </div>
 
@@ -431,11 +425,10 @@ export default function BuilderPage() {
         {/* ── PREVIEW ── */}
         <section
           ref={containerRef}
-          className={`flex-1 bg-[#020617] overflow-auto items-start justify-center p-4 sm:p-8 lg:p-16 relative no-print ${
+          className={`flex-1 bg-[#f5f5f5] overflow-auto items-start justify-center p-4 sm:p-8 lg:p-16 relative no-print ${
             activeTab === "preview" ? "flex" : "hidden lg:flex"
           }`}
         >
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none" />
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -472,13 +465,13 @@ export default function BuilderPage() {
       />
 
       {/* ── MOBILE NAVIGATION TAB BAR ── */}
-      <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[150] flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-xl border border-cyan-500/30 rounded-full p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.6)] no-print">
+      <div className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[150] flex items-center gap-1.5 bg-white/90 backdrop-blur-xl border border-black/10 rounded-full p-1.5 shadow-[0_10px_40px_rgba(0,0,0,0.1)] no-print">
         <button
           onClick={() => setActiveTab("edit")}
-          className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border-0 cursor-pointer ${
+          className={`px-5 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border-0 cursor-pointer ${
             activeTab === "edit"
-              ? "bg-linear-to-r from-cyan-500 to-indigo-500 text-white shadow-lg shadow-cyan-500/25"
-              : "text-slate-400 hover:text-slate-200 bg-transparent"
+              ? "bg-[#171717] text-white shadow-sm"
+              : "text-[#737373] hover:text-[#171717] bg-transparent"
           }`}
         >
           <Edit3 size={12} />
@@ -486,10 +479,10 @@ export default function BuilderPage() {
         </button>
         <button
           onClick={() => setActiveTab("preview")}
-          className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border-0 cursor-pointer ${
+          className={`px-5 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border-0 cursor-pointer ${
             activeTab === "preview"
-              ? "bg-linear-to-r from-cyan-500 to-indigo-500 text-white shadow-lg shadow-cyan-500/25"
-              : "text-slate-400 hover:text-slate-200 bg-transparent"
+              ? "bg-[#171717] text-white shadow-sm"
+              : "text-[#737373] hover:text-[#171717] bg-transparent"
           }`}
         >
           <Eye size={12} />
@@ -511,7 +504,7 @@ function IntroWelcomeScreen() {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        background: "#030712",
+        background: "#ffffff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -519,41 +512,26 @@ function IntroWelcomeScreen() {
         overflow: "hidden"
       }}
     >
-      {/* Ambient background glows */}
-      <div className="absolute w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute w-[400px] h-[400px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
-
       {/* Main Container */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-        {/* Glowing Logo Circle */}
+        {/* Minimal Logo Circle */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
             position: "relative",
-            width: 90,
-            height: 90,
-            borderRadius: 24,
-            background: "linear-gradient(135deg,#06b6d4,#6366f1)",
+            width: 80,
+            height: 80,
+            borderRadius: 16,
+            background: "#171717",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 0 40px rgba(6,182,212,0.3)"
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
           }}
         >
-          {/* Animated spinning outline ring */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-            style={{
-              position: "absolute",
-              inset: -3,
-              borderRadius: 27,
-              border: "1px dashed rgba(6,182,212,0.4)"
-            }}
-          />
-          <span style={{ fontSize: 42, fontWeight: 950, color: "#fff", fontFamily: "Montserrat, sans-serif" }}>D</span>
+          <span style={{ fontSize: 36, fontWeight: 800, color: "#fff", fontFamily: "Inter, sans-serif" }}>D</span>
         </motion.div>
 
           {/* Brand Name */}
@@ -563,51 +541,48 @@ function IntroWelcomeScreen() {
             transition={{ delay: 0.3, duration: 0.6 }}
             style={{
               fontSize: 24,
-              fontWeight: 950,
-              letterSpacing: "-0.05em",
-              textTransform: "uppercase",
-              fontFamily: "Montserrat, sans-serif",
+              fontWeight: 800,
+              letterSpacing: "-0.02em",
+              fontFamily: "Inter, sans-serif",
               margin: 0,
               marginTop: 8,
-              color: "#fff"
+              color: "#171717"
             }}
           >
             CV Dada
           </motion.h2>
 
-          {/* Version 3.0 Badge with pulsing glow */}
+          {/* Version 3.0 Badge with clean border */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
             style={{
-              background: "rgba(6,182,212,0.12)",
-              border: "1px solid rgba(6,182,212,0.3)",
+              background: "#fafafa",
+              border: "1px solid #e5e5e5",
               borderRadius: 30,
-              padding: "5px 14px",
+              padding: "4px 12px",
               fontSize: 10,
-              fontWeight: 900,
-              color: "#06b6d4",
-              letterSpacing: "0.2em",
+              fontWeight: 600,
+              color: "#525252",
+              letterSpacing: "0.1em",
               textTransform: "uppercase",
-              boxShadow: "0 0 20px rgba(6,182,212,0.1)",
               display: "flex",
               alignItems: "center",
               gap: 6
             }}
           >
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#06b6d4", display: "inline-block" }} className="animate-ping" />
             Version 3.0
           </motion.div>
         </div>
 
         {/* Progress Line */}
-        <div style={{ position: "absolute", bottom: 64, width: 200, height: 2, background: "rgba(255,255,255,0.03)", borderRadius: 2, overflow: "hidden" }}>
+        <div style={{ position: "absolute", bottom: 64, width: 200, height: 2, background: "#f0f0f0", borderRadius: 2, overflow: "hidden" }}>
           <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: "0%" }}
             transition={{ duration: 1.8, ease: "easeInOut" }}
-            style={{ width: "100%", height: "100%", background: "linear-gradient(90deg, #06b6d4, #6366f1)" }}
+            style={{ width: "100%", height: "100%", background: "#171717" }}
           />
         </div>
       </motion.div>

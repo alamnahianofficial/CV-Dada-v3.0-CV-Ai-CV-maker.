@@ -21,7 +21,7 @@ export default function PhotoUpload({ photo, setPhoto }: Props) {
             borderRadius: 10,
             overflow: "hidden",
             border: valid ? "2px solid #3b82f6" : "2px dashed #334155",
-            background: "#0f172a",
+            background: "#f5f5f5",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -41,7 +41,7 @@ export default function PhotoUpload({ photo, setPhoto }: Props) {
               }}
             />
           ) : (
-            <ImageIcon size={22} color="#475569" />
+            <ImageIcon size={22} color="#737373" />
           )}
         </div>
         <input
@@ -58,8 +58,8 @@ export default function PhotoUpload({ photo, setPhoto }: Props) {
         />
       </label>
       <div>
-        <p className="text-sm font-bold text-white mb-1">Passport Photo</p>
-        <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-2">
+        <p className="text-sm font-bold text-neutral-900 mb-1">Passport Photo</p>
+        <p className="text-[10px] text-neutral-500 uppercase font-bold tracking-widest mb-2">
           Click to upload
         </p>
         {photo && (

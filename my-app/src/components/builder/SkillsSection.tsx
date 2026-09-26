@@ -34,7 +34,7 @@ export default function SkillsSection({ resume, collapsed, onToggle, ops, sectio
                 value={s.skills} onChange={(e) => ops.upd(s.id, "skills", e.target.value)} />
               {idx > 0 && (
                 <button className="icon-btn" onClick={() => ops.remove(s.id)}>
-                  <Trash2 size={12} color="#f87171" />
+                  <Trash2 size={12} color="#dc2626" />
                 </button>
               )}
             </div>

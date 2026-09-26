@@ -37,8 +37,8 @@ function LinkRow({
         display: "flex",
         alignItems: "center",
         gap: 8,
-        background: "#0f172a",
-        border: "1px solid #1e293b",
+        background: "#f5f5f5",
+        border: "1px solid #e5e5e5",
         borderRadius: 10,
         padding: "0 10px",
         height: 36,
@@ -66,7 +66,7 @@ function LinkRow({
           border: "none",
           outline: "none",
           fontSize: 12,
-          color: "#e2e8f0",
+          color: "#171717",
         }}
         placeholder="GitHub / Live demo link"
         value={value}
@@ -105,7 +105,7 @@ export function ProjectsSection({
                 </span>
                 {idx > 0 && (
                   <button className="icon-btn" onClick={() => ops.remove(p.id)}>
-                    <Trash2 size={12} color="#f87171" />
+                    <Trash2 size={12} color="#dc2626" />
                   </button>
                 )}
               </div>
@@ -204,7 +204,7 @@ export function ThesisSection({
                   Thesis {idx + 1}
                 </span>
                 <button className="icon-btn" onClick={() => ops.remove(p.id)}>
-                  <Trash2 size={12} color="#f87171" />
+                  <Trash2 size={12} color="#dc2626" />
                 </button>
               </div>
               <div className="grid grid-cols-2 gap-2 mb-2">

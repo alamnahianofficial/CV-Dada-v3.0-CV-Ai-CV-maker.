@@ -33,7 +33,7 @@ export default function ExtrasSection({ resume, collapsed, onToggle, ops, sectio
                 value={e.value} onChange={(ev) => ops.upd(e.id, "value", ev.target.value)} />
               {idx > 0 && (
                 <button className="icon-btn" onClick={() => ops.remove(e.id)}>
-                  <Trash2 size={12} color="#f87171" />
+                  <Trash2 size={12} color="#dc2626" />
                 </button>
               )}
             </div>

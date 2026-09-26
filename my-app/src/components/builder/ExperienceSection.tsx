@@ -33,7 +33,7 @@ export default function ExperienceSection({ resume, collapsed, onToggle, ops, ai
                 <span className="text-[10px] text-slate-600 font-bold">Job {idx + 1}</span>
                 {idx > 0 && (
                   <button className="icon-btn" onClick={() => ops.remove(e.id)}>
-                    <Trash2 size={12} color="#f87171" />
+                    <Trash2 size={12} color="#dc2626" />
                   </button>
                 )}
               </div>

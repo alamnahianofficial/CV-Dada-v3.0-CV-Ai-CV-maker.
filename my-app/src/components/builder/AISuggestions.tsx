@@ -100,7 +100,7 @@ ${resumeText.slice(0, 600)}`,
         <p
           style={{
             fontSize: 10,
-            color: "#64748b",
+            color: "#737373",
             marginBottom: 10,
             lineHeight: 1.6,
           }}
@@ -133,7 +133,7 @@ ${resumeText.slice(0, 600)}`,
       </button>
 
       {error && (
-        <p style={{ fontSize: 10, color: "#f87171", marginBottom: 8 }}>
+        <p style={{ fontSize: 10, color: "#dc2626", marginBottom: 8 }}>
           {error}
         </p>
       )}
@@ -155,13 +155,13 @@ ${resumeText.slice(0, 600)}`,
             >
               <Lightbulb
                 size={12}
-                color="#a5b4fc"
+                color="#4338ca"
                 style={{ marginTop: 1, flexShrink: 0 }}
               />
               <p
                 style={{
                   fontSize: 11,
-                  color: "#cbd5e1",
+                  color: "#404040",
                   lineHeight: 1.55,
                   margin: 0,
                 }}

@@ -94,7 +94,7 @@ export default function DocxTemplateSelector({
                   transition: "all 0.2s ease",
                 }}
               >
-                <t.icon size={14} color={active ? "#fff" : "#64748b"} />
+                <t.icon size={14} color={active ? "#fff" : "#737373"} />
               </div>
               <div style={{ flex: 1 }}>
                 <div
@@ -109,7 +109,7 @@ export default function DocxTemplateSelector({
                     style={{
                       fontSize: 11,
                       fontWeight: 800,
-                      color: active ? "#fff" : "#94a3b8",
+                      color: active ? "#fff" : "#525252",
                     }}
                   >
                     {t.name}
@@ -134,7 +134,7 @@ export default function DocxTemplateSelector({
                 <p
                   style={{
                     fontSize: 10,
-                    color: "#475569",
+                    color: "#737373",
                     margin: 0,
                     lineHeight: 1.4,
                   }}
@@ -159,7 +159,7 @@ export default function DocxTemplateSelector({
           background: exporting
             ? "rgba(255, 255, 255, 0.05)"
             : "linear-gradient(135deg,#06b6d4,#6366f1)",
-          color: exporting ? "#64748b" : "#fff",
+          color: exporting ? "#737373" : "#fff",
           fontWeight: 950,
           fontSize: 11,
           textTransform: "uppercase",

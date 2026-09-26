@@ -56,7 +56,7 @@ function ScoreRing({ score }: { score: number }) {
           }}
         >
           <span style={{ fontSize: 18, fontWeight: 900, color }}>{score}</span>
-          <span style={{ fontSize: 8, color: "#64748b", fontWeight: 700 }}>
+          <span style={{ fontSize: 8, color: "#737373", fontWeight: 700 }}>
             / 100
           </span>
         </div>
@@ -103,7 +103,7 @@ export default function ATSChecker({ resume }: Props) {
           background: jobDescription.trim()
             ? "linear-gradient(135deg,#06b6d4,#6366f1)"
             : "rgba(255,255,255,0.05)",
-          color: jobDescription.trim() ? "#fff" : "#64748b",
+          color: jobDescription.trim() ? "#fff" : "#737373",
           border: "none",
           cursor: jobDescription.trim() ? "pointer" : "not-allowed",
           boxShadow: jobDescription.trim()
@@ -159,11 +159,11 @@ export default function ATSChecker({ resume }: Props) {
                     display: "flex",
                     justifyContent: "space-between",
                     fontSize: 10,
-                    color: "#94a3b8",
+                    color: "#525252",
                   }}
                 >
                   <span>{label}</span>
-                  <span style={{ color: "#e2e8f0", fontWeight: 700 }}>
+                  <span style={{ color: "#171717", fontWeight: 700 }}>
                     {val}
                   </span>
                 </div>
@@ -178,7 +178,7 @@ export default function ATSChecker({ resume }: Props) {
                 style={{
                   fontSize: 10,
                   fontWeight: 700,
-                  color: "#f87171",
+                  color: "#dc2626",
                   marginBottom: 6,
                 }}
               >
@@ -194,7 +194,7 @@ export default function ATSChecker({ resume }: Props) {
                       fontSize: 10,
                       fontWeight: 600,
                       background: "rgba(239,68,68,0.06)",
-                      color: "#f87171",
+                      color: "#dc2626",
                       border: "1px solid rgba(239,68,68,0.15)",
                     }}
                   >
@@ -212,7 +212,7 @@ export default function ATSChecker({ resume }: Props) {
                 style={{
                   fontSize: 10,
                   fontWeight: 700,
-                  color: "#4ade80",
+                  color: "#16a34a",
                   marginBottom: 6,
                 }}
               >

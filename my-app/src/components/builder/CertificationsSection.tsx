@@ -43,7 +43,7 @@ export default function CertificationsSection({
                 </span>
                 {idx > 0 && (
                   <button className="icon-btn" onClick={() => ops.remove(c.id)}>
-                    <Trash2 size={12} color="#f87171" />
+                    <Trash2 size={12} color="#dc2626" />
                   </button>
                 )}
               </div>
