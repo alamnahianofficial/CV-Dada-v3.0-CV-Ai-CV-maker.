@@ -56,10 +56,10 @@ export default function LandingPage() {
           transition={{ delay: 0.1 }}
           className="text-5xl sm:text-7xl font-bold text-[#171717] leading-[1.05] tracking-tight mb-6"
         >
-          A better way to build
+          আপনার প্রফেশনাল সিভি তৈরি করার
           <br />
-          <span className="text-slate-400">
-            your professional resume.
+          <span className="text-neutral-500">
+            একটি উন্নত উপায়
           </span>
         </motion.h1>
 
@@ -70,8 +70,7 @@ export default function LandingPage() {
           transition={{ delay: 0.18 }}
           className="text-lg md:text-xl text-[#737373] max-w-2xl mx-auto mb-10 leading-relaxed font-inter"
         >
-          Generate ATS-optimized resumes in minutes with AI.{" "}
-          <span>No accounts, no tracking — completely private.</span>
+          Use the power of Gemini 3.8 Flash to create an ATS-friendly resume in just a few minutes. You don't need to sign up for an account, and we never save your data. Everything stays completely private.
         </motion.p>
 
         <motion.div
@@ -184,12 +183,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* footer */}
       <footer
         className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10 border-t border-black/5"
       >
         <p className="text-[#737373] text-sm font-medium">
-          © 2026 CV Dada
+          © 2026 CV Dada • Hand-crafted by Nahian Alam
         </p>
         <div className="text-sm text-[#525252] flex items-center gap-2 font-medium">
           <span>Obsidian Aurora Design</span>
