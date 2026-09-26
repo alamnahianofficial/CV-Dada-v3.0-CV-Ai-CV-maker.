@@ -1,153 +1,81 @@
 # CV Dada v3 — AI Powered CV Maker
 
-> **Precision built. Privacy first.**  
-> ATS-optimized resume builder with AI assistance — no accounts, no database, no tracking.
+> Built with privacy in mind. No accounts, no database, no tracking.
 
-Built by **Nahian Alam**
+Made by **Nahian Alam**
 
 ---
 
 ## What's New in v3.0
 
-- **Resilient Gemini API Integration:** Switched default AI provider to Google's Gemini 2.5 Flash. Added auto-retry logic with exponential backoff for `503 Service Unavailable` and `429 Too Many Requests` API spikes.
-- **Fail-Safe DOCX Native Fallback:** Implemented programmatic client-side virtual link download fallback to bypass browser security policies blocking traditional `file-saver` Blob triggers.
-- **Sleek v3.0 Intro Loader Screen:** Created a gorgeous welcome splash animation using Framer Motion with glowing aurora backdrops, a spinning outline ring loader, and a pulsing v3.0 ping locator.
-- **Autofill Parser Alignment:** Corrected schema mismatches in `/api/ai` route. Structured data parsing for PDF/DOCX imports now correctly extracts and maps `institution`, `cgpa`, certifications `date`, and references `phone`+`email` fields.
-- **AI Prompt Starter Chips:** Tapping sector prompt chips (CS, Marketing, Finance, Customer Success) inside the generator modal auto-populates high-quality, pre-written description outlines.
-- **Quick-Action Operations:** Added global "Load Sample CV" (loads high-fidelity Digital Marketing Specialist details) and "Clear Form" buttons to speed up CV creation.
+- Switched the AI provider to Google's Gemini 2.5 Flash. It now automatically retries if the API is busy or overloaded.
+- Added a backup way to download DOCX files, in case the browser blocks the normal download method.
+- Added a new splash/loading screen with smooth animations when the app starts up.
+- Fixed some bugs in how uploaded PDFs and DOCX files are read, so fields like institution, CGPA, certification dates, phone, and email now fill in correctly.
+- Added quick prompt buttons (CS, Marketing, Finance, Customer Success) that auto-fill good starter descriptions for your field.
+- Added a "Load Sample CV" button to quickly see an example, and a "Clear Form" button to start over.
 
 ---
 
 ## Features
 
-- **Two professional templates** — Classic (Times New Roman, ATS-safe) and Minimal (Calibri, designer-ready) with native hanging-indent bullet alignments.
-- **AI generation & parsing** — generate a full CV from a brief text description or upload an old PDF or DOCX to auto-fill all fields in real-time.
-- **ATS score checker & coach** — paste target job descriptions to get matching keywords, missing skill tags, and automated optimization coaching.
-- **AI improvement** — optimize individual fields on the fly using a professional ATS-oriented rewrite coach.
-- **Passport photo support** — correctly crops and embeds user photos in both preview templates and `.docx` exports.
-- **Session-based privacy** — operates entirely locally. All data resides in React state, clearing instantly on browser refresh or tab close.
+- Two resume templates: Classic (Times New Roman, good for ATS) and Minimal (Calibri, good for design-focused roles).
+- AI can build your whole CV from a short description, or read an existing PDF/DOCX and fill in the form for you.
+- Paste a job description and get a score showing how well your CV matches it, plus suggestions for missing keywords.
+- You can ask the AI to improve any single section of your CV to sound more professional.
+- Supports uploading a passport-style photo, which shows up correctly in both the preview and the exported DOCX.
+- Nothing is saved anywhere. Your data lives only in the browser and disappears when you refresh or close the tab.
 
 ---
 
-## Stack
+## Tech Used
 
-| Layer       | Tech                                                              |
-| ----------- | ----------------------------------------------------------------- |
-| Framework   | Next.js 16, React 19                                              |
-| Styling     | Tailwind CSS v4                                                   |
-| Language    | TypeScript                                                        |
-| Transitions | `framer-motion` v12                                               |
-| Word export | `docx` v9.6.1                                                     |
-| DOCX import | `jszip`                                                           |
-| AI Engine   | Google Gemini 2.5 Flash (via OpenAI-compatible `v1beta` endpoint) |
+| Part          | Tool                                    |
+| ------------- | ---------------------------------------- |
+| Framework     | Next.js 16, React 19                     |
+| Styling       | Tailwind CSS v4                          |
+| Language      | TypeScript                               |
+| Animations    | framer-motion v12                        |
+| Word export   | docx v9.6.1                              |
+| DOCX import   | jszip                                    |
+| AI            | Google Gemini 2.5 Flash (OpenAI-style API) |
 
 ---
 
 ## Getting Started
 
-### 1. Clone
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/alamnahianofficial/ai-resume-builder-clean.git
 cd ai-resume-builder-clean
 ```
 
-### 2. Install dependencies
+### 2. Install packages
 
 ```bash
 npm install
 ```
 
-### 3. Set up environment variables
+### 3. Add your API key
 
-Create a `.env.local` file in the project root:
+Create a `.env.local` file in the project folder with:
 
 ```env
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-Get a free API key at [openrouter.ai](https://openrouter.ai)
+You can get a free key at [openrouter.ai](https://openrouter.ai)
 
-### 4. Run
+### 4. Start the app
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Then open [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## Project Structure
-
-```
-src/
-  app/
-    page.tsx                  # Landing page
-    builder/page.tsx          # Builder UI
-    api/ai/route.ts           # OpenRouter AI route (generate / improve / parse)
-    api/parse-pdf/route.ts    # Server-side PDF text extraction
-    globals.css
-    layout.tsx
-  components/
-    StandardCV.tsx            # CV preview (Classic + Minimal)
-    builder/
-      AIModal.tsx
-      AISuggestions.tsx
-      ATSChecker.tsx
-      CertificationsSection.tsx
-      CVImport.tsx
-      DocxTemplateSelector.tsx
-      EducationSection.tsx
-      ExperienceSection.tsx
-      ExtrasSection.tsx
-      PersonalSection.tsx
-      PhotoUpload.tsx
-      ProjectsSection.tsx
-      ReferencesSection.tsx
-      SkillsSection.tsx
-      SummarySection.tsx
-  lib/
-    aiHelpers.ts
-    atsCalculator.ts
-    docxExport.ts
-    resumeDefaults.ts
-  types/
-    resume.ts
-```
-
----
-
-## Templates
-
-| Template | Font               | Best For                          |
-| -------- | ------------------ | --------------------------------- |
-| Classic  | Times New Roman    | Corporate, ATS-heavy applications |
-| Minimal  | Calibri / Segoe UI | Design, tech, creative roles      |
-
----
-
-## AI Modes
-
-| Mode       | Description                                                |
-| ---------- | ---------------------------------------------------------- |
-| `generate` | Build a full CV from a plain-text brief                    |
-| `improve`  | Rewrite a single field with ATS-optimized language         |
-| `parse`    | Extract structured data from raw CV text (PDF/DOCX import) |
-
----
-
-## Privacy
-
-- No database
-- No user accounts
-- No analytics or tracking
-- All CV data is stored in React state only — disappears when the tab is closed or refreshed
-- The AI API call sends only the text you submit, nothing else
-
----
-
-## License
-
-MIT © 2026 Nahian Alam
