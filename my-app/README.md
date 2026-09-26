@@ -1,5 +1,8 @@
 # CV Dada v3
 
+![CV DADA Intro](./CV-DADA-Intro.png)
+![CV Builder](./CV-Builder.png)
+
 Live -  gemini-cv-dada-v3.vercel.app
 
 **AI-powered CV builder. Privacy first, no accounts, no tracking.**
