@@ -1,81 +1,110 @@
-# CV Dada v3 — AI Powered CV Maker
+# CV Dada v3
 
-> Built with privacy in mind. No accounts, no database, no tracking.
+**AI-powered CV builder. Privacy first, no accounts, no tracking.**
 
-Made by **Nahian Alam**
+Built by **Nahian Alam**
 
 ---
 
-## What's New in v3.0
+## Overview
 
-- Switched the AI provider to Google's Gemini 2.5 Flash. It now automatically retries if the API is busy or overloaded.
-- Added a backup way to download DOCX files, in case the browser blocks the normal download method.
-- Added a new splash/loading screen with smooth animations when the app starts up.
-- Fixed some bugs in how uploaded PDFs and DOCX files are read, so fields like institution, CGPA, certification dates, phone, and email now fill in correctly.
-- Added quick prompt buttons (CS, Marketing, Finance, Customer Success) that auto-fill good starter descriptions for your field.
-- Added a "Load Sample CV" button to quickly see an example, and a "Clear Form" button to start over.
+CV Dada helps you build a clean, ATS-friendly resume in minutes. Fill out the form yourself, generate one with AI from a short description, or upload an old resume and let it auto-fill everything. Nothing is stored — all data lives in your browser session and disappears when you close the tab.
 
 ---
 
 ## Features
 
-- Two resume templates: Classic (Times New Roman, good for ATS) and Minimal (Calibri, good for design-focused roles).
-- AI can build your whole CV from a short description, or read an existing PDF/DOCX and fill in the form for you.
-- Paste a job description and get a score showing how well your CV matches it, plus suggestions for missing keywords.
-- You can ask the AI to improve any single section of your CV to sound more professional.
-- Supports uploading a passport-style photo, which shows up correctly in both the preview and the exported DOCX.
-- Nothing is saved anywhere. Your data lives only in the browser and disappears when you refresh or close the tab.
+- **Two templates** — Classic (Times New Roman, ATS-safe) and Minimal (Calibri, design-friendly)
+- **AI generation** — build a full CV from a short text description
+- **Smart parsing** — upload a PDF or DOCX resume and auto-fill the form
+- **ATS score checker** — paste a job description to see your match score and missing keywords
+- **AI field improvement** — rewrite any section to sound more professional
+- **Photo support** — upload and embed a passport-style photo in your CV
+- **Zero storage** — no database, no accounts, no analytics
 
 ---
 
-## Tech Used
+## Tech Stack
 
-| Part          | Tool                                    |
-| ------------- | ---------------------------------------- |
-| Framework     | Next.js 16, React 19                     |
-| Styling       | Tailwind CSS v4                          |
-| Language      | TypeScript                               |
-| Animations    | framer-motion v12                        |
-| Word export   | docx v9.6.1                              |
-| DOCX import   | jszip                                    |
-| AI            | Google Gemini 2.5 Flash (OpenAI-style API) |
+| Layer       | Tool                                      |
+| ----------- | ------------------------------------------ |
+| Framework   | Next.js 16, React 19                       |
+| Styling     | Tailwind CSS v4                            |
+| Language    | TypeScript                                 |
+| Animations  | Framer Motion v12                          |
+| Word export | docx v9.6.1                                |
+| DOCX import | jszip                                      |
+| AI          | Google Gemini 2.5 Flash (via OpenRouter)   |
 
 ---
 
 ## Getting Started
 
-### 1. Clone the repo
-
 ```bash
 git clone https://github.com/alamnahianofficial/ai-resume-builder-clean.git
 cd ai-resume-builder-clean
-```
-
-### 2. Install packages
-
-```bash
 npm install
 ```
 
-### 3. Add your API key
-
-Create a `.env.local` file in the project folder with:
+Create a `.env.local` file in the project root:
 
 ```env
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-You can get a free key at [openrouter.ai](https://openrouter.ai)
+Get a free API key at [openrouter.ai](https://openrouter.ai)
 
-### 4. Start the app
+Run the app:
 
 ```bash
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## Project Structure
+src/
+  app/
+    page.tsx                  # Landing page
+    builder/page.tsx          # Builder UI
+    api/ai/route.ts           # AI route (generate / improve / parse)
+    api/parse-pdf/route.ts    # Server-side PDF text extraction
+  components/
+    StandardCV.tsx            # CV preview (Classic + Minimal)
+    builder/                  # Form sections, AI modal, ATS checker, etc.
+  lib/
+    aiHelpers.ts
+    atsCalculator.ts
+    docxExport.ts
+    resumeDefaults.ts
+  types/
+    resume.ts
+
+    
+---
+
+## Templates
+
+| Template | Font                | Best For                          |
+| -------- | ------------------- | ---------------------------------- |
+| Classic  | Times New Roman      | Corporate, ATS-heavy applications |
+| Minimal  | Calibri / Segoe UI   | Design, tech, creative roles      |
+
+---
+
+## AI Modes
+
+| Mode     | Description                                         |
+| -------- | ----------------------------------------------------- |
+| generate | Build a full CV from a plain-text brief               |
+| improve  | Rewrite a single field with better, ATS-ready wording  |
+| parse    | Extract structured data from an uploaded PDF/DOCX      |
+
+---
+
+## Privacy
+
+No database. No accounts. No tracking. All CV data lives in React state and is cleared the moment you refresh or close the tab. The AI call sends only the text you submit — nothing else.
