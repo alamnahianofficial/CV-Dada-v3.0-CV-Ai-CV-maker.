@@ -3,6 +3,7 @@ import { writeFile, unlink } from "fs/promises";
 import { join } from "path";
 import { tmpdir } from "os";
 import { randomUUID } from "crypto";
+import { PDFParse, VerbosityLevel } from "pdf-parse";
 
 export async function POST(req: NextRequest) {
   let tmpPath: string | null = null;
@@ -19,11 +20,9 @@ export async function POST(req: NextRequest) {
 
     let text = "";
     try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { PDFParse, VerbosityLevel } = require("pdf-parse");
       const fileUrl = "file:///" + tmpPath.replace(/\\/g, "/");
       const parser = new PDFParse({ verbosity: VerbosityLevel.ERRORS, url: fileUrl });
-      await parser.load();
+      await (parser as any).load();
       const result = await parser.getText();
       text = result?.text ?? (typeof result === "string" ? result : "");
     } catch {
