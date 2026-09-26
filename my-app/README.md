@@ -1,5 +1,7 @@
 # CV Dada v3
 
+Live -  gemini-cv-dada-v3.vercel.app
+
 **AI-powered CV builder. Privacy first, no accounts, no tracking.**
 
 Built by **Nahian Alam**
@@ -62,6 +64,7 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000)
+
 
 ---
 
