@@ -18,15 +18,7 @@ async function extractDocxText(file: File): Promise<string> {
     .replace(/[ \t]{2,}/g," ").replace(/\n{3,}/g,"\n\n").trim();
 }
 
-async function extractPdfText(file: File): Promise<string> {
-  const fd = new FormData();
-  fd.append("file", file);
-  const res = await fetch("/api/parse-pdf", { method:"POST", body:fd });
-  if (!res.ok) throw new Error(`PDF parse failed: ${res.statusText}`);
-  const { text, error } = await res.json();
-  if (error) throw new Error(error);
-  return text ?? "";
-}
+// Removed PDF extraction logic
 
 export default function CVImport({ setResume }: Props) {
   const [status, setStatus] = useState<Status>("idle");
@@ -38,13 +30,13 @@ export default function CVImport({ setResume }: Props) {
     setFileName(file.name);
     setErrorMsg("");
     const ext = file.name.split(".").pop()?.toLowerCase();
-    if (!ext || !["pdf","docx"].includes(ext)) { setErrorMsg("Only PDF or DOCX supported."); setStatus("error"); return; }
+    if (!ext || ext !== "docx") { setErrorMsg("Only DOCX supported."); setStatus("error"); return; }
     setStatus("reading");
     let rawText = "";
     try {
-      rawText = ext === "docx" ? await extractDocxText(file) : await extractPdfText(file);
-    } catch(err) { setErrorMsg("Could not read file. Ensure it's a valid PDF or DOCX."); setStatus("error"); console.error(err); return; }
-    if (!rawText.trim()) { setErrorMsg("File appears empty or is a scanned image. Try a text-based PDF."); setStatus("error"); return; }
+      rawText = await extractDocxText(file);
+    } catch(err) { setErrorMsg("Could not read file. Ensure it's a valid DOCX."); setStatus("error"); console.error(err); return; }
+    if (!rawText.trim()) { setErrorMsg("File appears empty. Try a text-based DOCX."); setStatus("error"); return; }
     setStatus("parsing");
     await parseCVText(rawText, setResume, (s) => {
       if (s === "done") setStatus("done");
@@ -60,7 +52,7 @@ export default function CVImport({ setResume }: Props) {
       <div style={{fontSize:9,fontWeight:900,color:"#4338ca",textTransform:"uppercase",letterSpacing:"0.2em",marginBottom:10,display:"flex",alignItems:"center",gap:6}}>
         <Upload size={12}/> Import Existing CV
       </div>
-      <p style={{fontSize:10,color:"#737373",marginBottom:12,lineHeight:1.6}}>Upload your old PDF or DOCX — AI auto-fills all fields.</p>
+      <p style={{fontSize:10,color:"#737373",marginBottom:12,lineHeight:1.6}}>Upload your old DOCX — AI auto-fills all fields.</p>
 
       {status === "idle" && (
         <label onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f)handleFile(f);}}
@@ -69,10 +61,10 @@ export default function CVImport({ setResume }: Props) {
             <FileText size={20} color="#4f46e5"/>
           </div>
           <div style={{textAlign:"center"}}>
-            <p style={{fontSize:11,fontWeight:700,color:"#171717",margin:0}}>Drop PDF or DOCX here</p>
+            <p style={{fontSize:11,fontWeight:700,color:"#171717",margin:0}}>Drop DOCX here</p>
             <p style={{fontSize:10,color:"#737373",margin:"4px 0 0"}}>or click to browse</p>
           </div>
-          <input ref={inputRef} type="file" accept=".pdf,.docx" className="hidden" onChange={e=>{const f=e.target.files?.[0];if(f)handleFile(f);}}/>
+          <input ref={inputRef} type="file" accept=".docx" className="hidden" onChange={e=>{const f=e.target.files?.[0];if(f)handleFile(f);}}/>
         </label>
       )}
 

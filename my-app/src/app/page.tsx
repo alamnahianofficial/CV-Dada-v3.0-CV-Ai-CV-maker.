@@ -130,7 +130,7 @@ export default function LandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-[#171717]" />
-                <span>Local PDF parsing logic</span>
+                <span>Local DOCX parsing logic</span>
               </div>
             </div>
           </div>
