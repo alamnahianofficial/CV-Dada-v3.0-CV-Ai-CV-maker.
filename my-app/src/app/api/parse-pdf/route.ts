@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, unlink } from "fs/promises";
-import { join } from "path";
-import { tmpdir } from "os";
-import { randomUUID } from "crypto";
 import { PDFParse, VerbosityLevel } from "pdf-parse";
 
 export async function POST(req: NextRequest) {
-  let tmpPath: string | null = null;
   try {
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
@@ -14,19 +9,15 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Write to a temp file so pdf-parse v2 can read it via file:// URL
-    tmpPath = join(tmpdir(), `cv_${randomUUID()}.pdf`);
-    await writeFile(tmpPath, buffer);
-
     let text = "";
     try {
-      const fileUrl = "file:///" + tmpPath.replace(/\\/g, "/");
-      const parser = new PDFParse({ verbosity: VerbosityLevel.ERRORS, url: fileUrl });
+      const parser = new PDFParse({ verbosity: VerbosityLevel.ERRORS, data: buffer });
       await (parser as any).load();
       const result = await parser.getText();
       text = result?.text ?? (typeof result === "string" ? result : "");
-    } catch {
+    } catch (e) {
       // Fallback: try to extract readable text from raw PDF binary
+      console.warn("Primary PDF parse failed, trying fallback:", e);
       text = fallbackExtract(buffer.toString("latin1"));
     }
 
@@ -37,11 +28,6 @@ export async function POST(req: NextRequest) {
 
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });
-  } finally {
-    // Always clean up the temp file
-    if (tmpPath) {
-      try { await unlink(tmpPath); } catch { /* ignore */ }
-    }
   }
 }
 

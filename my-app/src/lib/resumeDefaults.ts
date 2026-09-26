@@ -106,7 +106,7 @@ export const initResume = (): ResumeData => ({
 });
 
 export const demoResume = (): ResumeData => ({
-  full_name: "Jane Doe",
+  full_name: "Ayesha Rahman",
   email: "jane.doe@example.com",
   phone: "+1 (555) 019-2834",
   location: "San Francisco, CA",
